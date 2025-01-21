@@ -1,0 +1,6 @@
+ЧТОБЫ ВСЁ ЗАРАБОТАЛО:
+
+1) нужен html-файл в папке public
+
+
+2) указать  app.use("/", express.static("public"));
