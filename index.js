@@ -106,7 +106,7 @@ app.get("/api/users/:id", (req, res) => {
 });
 
 // Запуск сервера
-const PORT = 3000;
+const PORT = 3111;
 app.listen(PORT, () => {
     console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
