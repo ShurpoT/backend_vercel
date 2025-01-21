@@ -27,83 +27,104 @@ connection.connect((err) => {
 
 console.log(connection);
 
-app.get("/api/create-table", (req, res) => {
-    const query = `
-        CREATE TABLE IF NOT EXISTS users (
-            id INT AUTO_INCREMENT,
-            name VARCHAR(255) NOT NULL,
-            email VARCHAR(255) NOT NULL,
-            PRIMARY KEY (id, email),
-            SHARD KEY (id, email)
-        );
-    `;
-    connection.query(query, (err) => {
-        if (err) {
-            console.error("Ошибка создания таблицы:", err);
-            return res.status(500).send("Ошибка сервера");
-        }
-        res.send("Таблица пользователей создана.");
-    });
+app.get("/api/create-table-2", (req, res) => {
+    res.send([
+        {
+            id: "0",
+            name_: "bob",
+        },
+        {
+            id: "1",
+            name_: "bobik",
+        },
+        {
+            id: "2",
+            name_: "Tim",
+        },
+        {
+            id: "3",
+            name_: "Tom",
+        },
+    ]);
 });
 
-// 2. Заполнение таблицы 10 пользователями
-app.get("/api/populate-table", (req, res) => {
-    const users = [
-        { name: "Alice", email: "alice@example.com" },
-        { name: "Bob", email: "bob@example.com" },
-        { name: "Charlie", email: "charlie@example.com" },
-        { name: "Diana", email: "diana@example.com" },
-        { name: "Eve", email: "eve@example.com" },
-        { name: "Frank", email: "frank@example.com" },
-        { name: "Grace", email: "grace@example.com" },
-        { name: "Hank", email: "hank@example.com" },
-        { name: "Ivy", email: "ivy@example.com" },
-        { name: "Jack", email: "jack@example.com" },
-    ];
+// app.get("/api/create-table", (req, res) => {
+//     const query = `
+//         CREATE TABLE IF NOT EXISTS users (
+//             id INT AUTO_INCREMENT,
+//             name VARCHAR(255) NOT NULL,
+//             email VARCHAR(255) NOT NULL,
+//             PRIMARY KEY (id, email),
+//             SHARD KEY (id, email)
+//         );
+//     `;
+//     connection.query(query, (err) => {
+//         if (err) {
+//             console.error("Ошибка создания таблицы:", err);
+//             return res.status(500).send("Ошибка сервера");
+//         }
+//         res.send("Таблица пользователей создана.");
+//     });
+// });
 
-    const query = `INSERT INTO users (name, email) VALUES ?`;
-    const values = users.map((user) => [user.name, user.email]);
+// // 2. Заполнение таблицы 10 пользователями
+// app.get("/api/populate-table", (req, res) => {
+//     const users = [
+//         { name: "Alice", email: "alice@example.com" },
+//         { name: "Bob", email: "bob@example.com" },
+//         { name: "Charlie", email: "charlie@example.com" },
+//         { name: "Diana", email: "diana@example.com" },
+//         { name: "Eve", email: "eve@example.com" },
+//         { name: "Frank", email: "frank@example.com" },
+//         { name: "Grace", email: "grace@example.com" },
+//         { name: "Hank", email: "hank@example.com" },
+//         { name: "Ivy", email: "ivy@example.com" },
+//         { name: "Jack", email: "jack@example.com" },
+//     ];
 
-    connection.query(query, [values], (err, results) => {
-        if (err) {
-            console.error("Ошибка вставки данных:", err.message);
-            return res.status(500).send("Ошибка вставки данных: " + err.message);
-        }
-        res.send("Таблица заполнена данными!");
-    });
-});
+//     const query = `INSERT INTO users (name, email) VALUES ?`;
+//     const values = users.map((user) => [user.name, user.email]);
 
-// 3. Получение всех пользователей
-app.get("/api/users", (req, res) => {
-    const query = `SELECT * FROM users`;
+//     connection.query(query, [values], (err, results) => {
+//         if (err) {
+//             console.error("Ошибка вставки данных:", err.message);
+//             return res.status(500).send("Ошибка вставки данных: " + err.message);
+//         }
+//         res.send("Таблица заполнена данными!");
+//     });
+// });
 
-    connection.query(query, (err, results) => {
-        if (err) {
-            console.error("Ошибка выполнения запроса:", err.message);
-            return res.status(500).send("Ошибка сервера");
-        }
-        res.json(results);
-    });
-});
+// // 3. Получение всех пользователей
+// app.get("/api/users", (req, res) => {
+//     const query = `SELECT * FROM users`;
 
-// 4. Получение конкретного пользователя
-app.get("/api/users/:id", (req, res) => {
-    const userId = req.params.id;
-    const query = `SELECT * FROM users WHERE id = ?`;
+//     connection.query(query, (err, results) => {
+//         if (err) {
+//             console.error("Ошибка выполнения запроса:", err.message);
+//             return res.status(500).send("Ошибка сервера");
+//         }
+//         res.json(results);
+//     });
+// });
 
-    connection.query(query, [userId], (err, results) => {
-        if (err) {
-            console.error("Ошибка получения пользователя:", err);
-            return res.status(500).send("Ошибка сервера");
-        }
+// // 4. Получение конкретного пользователя
+// app.get("/api/users/:id", (req, res) => {
+//     const userId = req.params.id;
+//     const query = `SELECT * FROM users WHERE id = ?`;
 
-        if (results.length === 0) {
-            return res.status(404).send("Пользователь не найден(((");
-        }
+//     connection.query(query, [userId], (err, results) => {
+//         if (err) {
+//             console.error("Ошибка получения пользователя:", err);
+//             return res.status(500).send("Ошибка сервера");
+//         }
 
-        res.json(results[0]);
-    });
-});
+//         if (results.length === 0) {
+//             return res.status(404).send("Пользователь не найден(((");
+//         }
+
+//         res.json(results[0]);
+//     });
+// });
 
 // Запуск сервера
 const PORT = 3111;
