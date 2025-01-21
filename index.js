@@ -98,7 +98,7 @@ app.get("/api/users/:id", (req, res) => {
         }
 
         if (results.length === 0) {
-            return res.status(404).send("Пользователь не найден");
+            return res.status(404).send("Пользователь не найден(((");
         }
 
         res.json(results[0]);
