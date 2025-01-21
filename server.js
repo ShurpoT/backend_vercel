@@ -1,33 +1,33 @@
 const express = require("express");
-// const mysql = require("mysql2");
-// const fs = require("fs");
+const mysql = require("mysql2");
+const fs = require("fs");
 
 const app = express();
 app.use(express.json());
 
 app.use("/", express.static("public"));
 
-// const connection = mysql.createConnection({
-//     host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
-//     port: 3333,
-//     user: "Tima-29a20",
-//     password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
-//     database: "tanks",
-//     ssl: {
-//         ca: fs.readFileSync("./singlestore_bundle.pem"),
-//     },
-// });
+const connection = mysql.createConnection({
+    host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
+    port: 3333,
+    user: "Tima-29a20",
+    password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
+    database: "tanks",
+    ssl: {
+        ca: fs.readFileSync("./singlestore_bundle.pem"),
+    },
+});
 
 // Проверка подключения
-// connection.connect((err) => {
-//     if (err) {
-//         console.error("Ошибка подключения к базе данных:", err);
-//     } else {
-//         console.log("Подключение успешно установлено.");
-//     }
-// });
+connection.connect((err) => {
+    if (err) {
+        console.error("Ошибка подключения к базе данных:", err);
+    } else {
+        console.log("Подключение успешно установлено.");
+    }
+});
 
-// console.log(connection);
+console.log(connection);
 
 app.get("/api/create-table-2", (req, res) => {
     res.send([
@@ -96,18 +96,18 @@ app.get("/api/create-table-2", (req, res) => {
 //     });
 // });
 
-// // 3. Получение всех пользователей
-// app.get("/api/users", (req, res) => {
-//     const query = `SELECT * FROM users`;
+// 3. Получение всех пользователей
+app.get("/api/users", (req, res) => {
+    const query = `SELECT * FROM users`;
 
-//     connection.query(query, (err, results) => {
-//         if (err) {
-//             console.error("Ошибка выполнения запроса:", err.message);
-//             return res.status(500).send("Ошибка сервера");
-//         }
-//         res.json(results);
-//     });
-// });
+    connection.query(query, (err, results) => {
+        if (err) {
+            console.error("Ошибка выполнения запроса:", err.message);
+            return res.status(500).send("Ошибка сервера");
+        }
+        res.json(results);
+    });
+});
 
 // // 4. Получение конкретного пользователя
 // app.get("/api/users/:id", (req, res) => {
