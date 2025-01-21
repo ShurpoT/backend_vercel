@@ -5,6 +5,8 @@ const express = require("express");
 const app = express();
 app.use(express.json());
 
+app.use("/", express.static("public"));
+
 // const connection = mysql.createConnection({
 //     host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
 //     port: 3333,
