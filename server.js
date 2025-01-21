@@ -25,7 +25,7 @@ app.use(express.json());
 //     }
 // });
 
-console.log(connection);
+// console.log(connection);
 
 app.get("/api/create-table-2", (req, res) => {
     res.send([
