@@ -27,7 +27,7 @@ connection.connect((err) => {
 
 console.log(connection);
 
-app.get("/create-table", (req, res) => {
+app.get("/api/create-table", (req, res) => {
     const query = `
         CREATE TABLE IF NOT EXISTS users (
             id INT AUTO_INCREMENT,
@@ -47,7 +47,7 @@ app.get("/create-table", (req, res) => {
 });
 
 // 2. Заполнение таблицы 10 пользователями
-app.get("/populate-table", (req, res) => {
+app.get("/api/populate-table", (req, res) => {
     const users = [
         { name: "Alice", email: "alice@example.com" },
         { name: "Bob", email: "bob@example.com" },
@@ -74,7 +74,7 @@ app.get("/populate-table", (req, res) => {
 });
 
 // 3. Получение всех пользователей
-app.get("/users", (req, res) => {
+app.get("/api/users", (req, res) => {
     const query = `SELECT * FROM users`;
 
     connection.query(query, (err, results) => {
@@ -87,7 +87,7 @@ app.get("/users", (req, res) => {
 });
 
 // 4. Получение конкретного пользователя
-app.get("/users/:id", (req, res) => {
+app.get("/api/users/:id", (req, res) => {
     const userId = req.params.id;
     const query = `SELECT * FROM users WHERE id = ?`;
 
