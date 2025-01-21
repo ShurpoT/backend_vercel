@@ -1,29 +1,29 @@
 const express = require("express");
-const mysql = require("mysql2");
-const fs = require("fs");
+// const mysql = require("mysql2");
+// const fs = require("fs");
 
 const app = express();
 app.use(express.json());
 
-const connection = mysql.createConnection({
-    host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
-    port: 3333,
-    user: "Tima-29a20",
-    password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
-    database: "tanks",
-    ssl: {
-        ca: fs.readFileSync("./singlestore_bundle.pem"),
-    },
-});
+// const connection = mysql.createConnection({
+//     host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
+//     port: 3333,
+//     user: "Tima-29a20",
+//     password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
+//     database: "tanks",
+//     ssl: {
+//         ca: fs.readFileSync("./singlestore_bundle.pem"),
+//     },
+// });
 
 // Проверка подключения
-connection.connect((err) => {
-    if (err) {
-        console.error("Ошибка подключения к базе данных:", err);
-    } else {
-        console.log("Подключение успешно установлено.");
-    }
-});
+// connection.connect((err) => {
+//     if (err) {
+//         console.error("Ошибка подключения к базе данных:", err);
+//     } else {
+//         console.log("Подключение успешно установлено.");
+//     }
+// });
 
 console.log(connection);
 
