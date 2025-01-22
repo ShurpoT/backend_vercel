@@ -1,9 +1,11 @@
 const express = require("express");
+var cors = require("cors");
 const mysql = require("mysql2");
 const fs = require("fs");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 app.use("/", express.static("public"));
 
