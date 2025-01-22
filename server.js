@@ -22,6 +22,8 @@ const connection = mysql.createConnection({
     },
 });
 
+console.log(fs.readFileSync("./singlestore_bundle.pem"));
+
 // Проверка подключения
 connection.connect((err) => {
     if (err) {
@@ -31,7 +33,7 @@ connection.connect((err) => {
     }
 });
 
-console.log(connection);
+// console.log(connection);
 
 app.get("/api/create-table-2", (req, res) => {
     res.send([
