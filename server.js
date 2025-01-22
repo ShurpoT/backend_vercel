@@ -11,7 +11,7 @@ app.use("/", express.static("public"));
 
 const connection = mysql.createConnection({
     host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
-    port: 3333,
+    port: 3353,
     user: "Tima-29a20",
     password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
     database: "tanks",
