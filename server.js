@@ -15,6 +15,8 @@ const connection = mysql.createConnection({
     user: "Tima-29a20",
     password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
     database: "tanks",
+    waitForConnections: true,
+    queueLimit: 0,
     ssl: {
         ca: fs.readFileSync("./singlestore_bundle.pem"),
     },
@@ -131,7 +133,7 @@ app.get("/api/users", (req, res) => {
 // });
 
 // Запуск сервера
-const PORT = 3111;
+const PORT = 3171;
 app.listen(PORT, () => {
     console.log(`Сервер запущен на http://localhost:${PORT}`);
 });
