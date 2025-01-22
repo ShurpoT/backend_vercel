@@ -1,11 +1,17 @@
 require("dotenv").config(); // Подключаем переменные окружения
 const express = require("express");
 const cors = require("cors");
+const corsConfig = {
+    origin: "*",
+    credential: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+};
 const mysql = require("mysql2");
+const fs = require("fs");
 
 const app = express();
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsConfig));
 app.use("/", express.static("public"));
 
 // Настройки подключения
@@ -18,7 +24,8 @@ const connection = mysql.createConnection({
     waitForConnections: true,
     queueLimit: 0,
     ssl: {
-        ca: process.env.SSL_CERTIFICATE, // SSL сертификат из переменной
+        // ca: process.env.SSL_CERTIFICATE, // SSL сертификат из переменной
+        ca: fs.readFileSync("./singlestore_bundle.pem"),
     },
 });
 
