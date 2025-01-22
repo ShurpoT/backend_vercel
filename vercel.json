@@ -12,9 +12,19 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/",
-            "methods": ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+            "src": "/api/(.*)",
+            "dest": "server.js",
+            "methods": ["GET", "POST", "POST", "PATCH", "DELETE", "OPTIONS"]
+        },
+        {
+            "src": "/",
+            "dest": "public/index.html",
+            "methods": ["GET", "POST", "POST", "PATCH", "DELETE", "OPTIONS"]
+        },
+        {
+            "src": "/(.+)",
+            "dest": "public/$1",
+            "methods": ["GET", "POST", "POST", "PATCH", "DELETE", "OPTIONS"]
         }
     ]
 }
