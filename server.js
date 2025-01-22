@@ -1,15 +1,17 @@
 require("dotenv").config(); // Подключаем переменные окружения
 const express = require("express");
 const cors = require("cors");
+
+const mysql = require("mysql2");
+const fs = require("fs");
+
+const app = express();
 const corsConfig = {
     origin: "*",
     credential: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
 };
-const mysql = require("mysql2");
-const fs = require("fs");
-
-const app = express();
+app.options("", cors(corsConfig));
 app.use(express.json());
 app.use(cors(corsConfig));
 app.use("/", express.static("public"));
