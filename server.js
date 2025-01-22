@@ -18,11 +18,11 @@ app.use("/", express.static("public"));
 
 // Настройки подключения
 const connection = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: process.env.DB_PORT,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_DATABASE,
+    host: "svc-3482219c-a389-4079-b18b-d50662524e8a-shared-dml.aws-virginia-6.svc.singlestore.com",
+    port: "3333",
+    user: "Tima-29a20",
+    password: "OP7eeUq3fbKZOppqF1JIsCMlDJHNMD17",
+    database: "tanks",
     waitForConnections: true,
     queueLimit: 0,
     ssl: {
